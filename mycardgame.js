@@ -57,27 +57,48 @@ class GameBoard {
            deck.shuffleDeck();
             this.player1Cards = deck.cards.slice(0 , 26);
             this.player2Cards = deck.cards.slice(26, 52);
-            console.log(this.player1Cards);
-            console.log(this.player2Cards);
+           // console.log(this.player1Cards);
+           // console.log(this.player2Cards);
         }
+    }
 
-        playWar() {
-            for (let i = 0; i < this.player1Cards; i ++) {
+    class PlayGame extends GameBoard {
+        constructor (player1, player2) {
+            super(GameBoard);
+            this.player1 = player1;
+            this.player2 = player2;
+        }
+        playWar(player1, player2) {
+            let play = new GameBoard;
+            play.splitDeck();
+            for (let i = 0; i < play.player1Cards.length; i ++) {
                 
-                console.log(this.player1Cards[i]);
-                console.log(this.player2Cards[i]);
-                console.log('*************************');
+                console.log( `Player ${player1} has card: ` + ' suit ' + 
+                play.player1Cards[i].suit + ', rank ' +
+                play.player1Cards[i].rank + ', value ' +
+                play.player1Cards[i].value);
+                console.log( `Player ${player2} has card: ` + ' suit ' + 
+                play.player2Cards[i].suit + ', rank ' +
+                play.player2Cards[i].rank + ', value ' +
+                play.player2Cards[i].value);
+                console.log('************************* \n');
 
-                if (this.player1Cards[i] > this.player2Cards) {
+                if (play.player1Cards[i].value > play.player2Cards[i].value) {
                         this.player1Score += 1;
-                        console.log(this.player1Score);
-                } else if (this.player1Cards[i] < this.player2Cards) {
+                        console.log(`${player1}'s score:   ${this.player1Score} \n
+                                \n` );
+                } else if (play.player1Cards[i].value < play.player2Cards[i].value) {
                         this.player2Score += 1;
-                        console.log(this.player2Score);
+                        console.log(`${player2}'s score:   ${this.player2Score} \n
+                                \n`);
                 } else {
                     console.log('Even');
                 }
+                
             }
+            console.log(`Final score is
+                ${player1} : ${this.player1Score}
+                ${player2} : ${this.player2Score} `)
         }
     }
 
@@ -89,6 +110,7 @@ class GameBoard {
 //let newDeck = new Deck();
 //console.log(newDeck.createDeck());
 //console.log(newDeck.shuffleDeck());
-let newPlayers = new GameBoard;
-newPlayers.splitDeck('a', 'b');
-newPlayers.playWar('a', 'b');
+//let newPlayers = new GameBoard;
+//newPlayers.splitDeck('a', 'b');
+let newGame = new PlayGame;
+newGame.playWar('a', 'b');
