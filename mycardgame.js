@@ -92,13 +92,21 @@ class GameBoard {
                         console.log(`${player2}'s score:   ${this.player2Score} \n
                                 \n`);
                 } else {
-                    console.log('Even');
+                    console.log('Even \n');
                 }
                 
             }
             console.log(`Final score is
                 ${player1} : ${this.player1Score}
                 ${player2} : ${this.player2Score} `)
+
+                if (this.player1Score > this.player2Score) {
+                    console.log(`${player1} IS A WINNER`);
+                } else if (this.player1Score < this.player2Score) {
+                    console.log(`${player2} IS A WINNER`);
+                } else {
+                    console.log('The score is tie. No wiiners.')
+                }
         }
     }
 
@@ -110,7 +118,7 @@ class GameBoard {
 //let newDeck = new Deck();
 //console.log(newDeck.createDeck());
 //console.log(newDeck.shuffleDeck());
-//let newPlayers = new GameBoard;
-//newPlayers.splitDeck('a', 'b');
+let newPlayers = new GameBoard;
+newPlayers.splitDeck('a', 'b');
 let newGame = new PlayGame;
 newGame.playWar('a', 'b');
